@@ -11,6 +11,7 @@ def create_docker_mount_base_dir_with_correct_permissions(docker_mount_base_dir)
     docker_gid = grp.getgrnam("docker").gr_gid
     pathlib.Path(docker_mount_base_dir).mkdir(mode=0o770, parents=True, exist_ok=True)
     os.chown(docker_mount_base_dir, -1, docker_gid)
+    os.chmod(docker_mount_base_dir, 0o770)
 
 
 def pass_docker_socket_args(args):
